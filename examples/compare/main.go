@@ -7,7 +7,7 @@ import (
 	"reflect"
 	"time"
 
-	"github.com/pavlo-v-chernykh/keystore-go/v4"
+	"github.com/marsskop/keystore-go"
 )
 
 type nonRand struct {
