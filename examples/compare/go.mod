@@ -1,7 +1,5 @@
-module github.com/pavlo-v-chernykh/keystore-go/v4/examples/compare
+module github.com/marsskop/keystore-go/examples/compare
 
-go 1.17
+go 1.22.3
 
-require github.com/pavlo-v-chernykh/keystore-go/v4 v4.0.0
-
-replace github.com/pavlo-v-chernykh/keystore-go/v4 v4.0.0 => ../..
+require github.com/marsskop/keystore-go v0.0.0-20240813103818-2065acff2d15

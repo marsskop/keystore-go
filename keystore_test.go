@@ -61,6 +61,16 @@ func TestSetGetMethods(t *testing.T) {
 		t.Fatal(err)
 	}
 
+	ctpkeGet, err := ks.GetCreationTime(pkeAlias)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	cttceGet, err := ks.GetCreationTime(tceAlias)
+	if err != nil {
+		t.Fatal(err)
+	}
+
 	if !reflect.DeepEqual(pke, pkeGet) {
 		t.Fatal("private key entries not equal")
 	}
@@ -71,6 +81,14 @@ func TestSetGetMethods(t *testing.T) {
 
 	if !reflect.DeepEqual(tce, tceGet) {
 		t.Fatal("private key entries not equal")
+	}
+
+	if pke.CreationTime != ctpkeGet {
+		t.Fatal("creation times not equal")
+	}
+
+	if tce.CreationTime != cttceGet {
+		t.Fatal("creation times not equal")
 	}
 
 	if _, err := ks.GetPrivateKeyEntry(nonExistentAlias, password); !errors.Is(err, ErrEntryNotFound) {
