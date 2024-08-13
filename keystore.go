@@ -306,6 +306,21 @@ func (ks KeyStore) IsTrustedCertificateEntry(alias string) bool {
 	return ok
 }
 
+func (ks KeyStore) GetCreationTime(alias string) (time.Time, error) {
+	e, ok := ks.m[ks.convertAlias(alias)]
+	if !ok {
+		return time.Time{}, ErrEntryNotFound
+	}
+	switch typedEntry := e.(type) {
+	case PrivateKeyEntry:
+		return typedEntry.CreationTime, nil
+	case TrustedCertificateEntry:
+		return typedEntry.CreationTime, nil
+	default:
+		return time.Time{}, errors.New("got invalid entry")
+	}
+}
+
 // DeleteEntry deletes entry from the keystore.
 func (ks KeyStore) DeleteEntry(alias string) {
 	delete(ks.m, ks.convertAlias(alias))
